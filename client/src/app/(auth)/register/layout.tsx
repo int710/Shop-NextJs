@@ -5,7 +5,6 @@ export default function RegLayout({
 }>) {
     return (
         <div>
-            Header Reg
             {children}
         </div>
     );

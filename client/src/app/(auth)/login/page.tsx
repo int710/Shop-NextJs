@@ -1,7 +1,7 @@
-function PageLogin() {
+function LoginPage() {
     return (<main>
         Hello loginb
     </main>);
 }
 
-export default PageLogin;
+export default LoginPage;
