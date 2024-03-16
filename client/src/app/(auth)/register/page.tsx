@@ -1,5 +1,8 @@
+import { ModeToggle } from "@/components/mode-toggle"
 export default function LoginPage() {
     return (
-        <main>Reg đi</main>
+        <main>
+            <ModeToggle></ModeToggle>
+            Reg đi</main>
     )
 }
