@@ -50,7 +50,25 @@ export default function LoginForm() {
                 return data;
             })
             toast({
-                description: 'Đăng nhập thành công'
+                description: 'Đăng nhập thành công',
+            })
+
+            const resultFromNextServer = await fetch('/api/auth', {
+                method: 'POST',
+                body: JSON.stringify(result),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(async res => {
+                const payload = await res.json();
+                const data = {
+                    status: res.status,
+                    payload
+                }
+                if (!res.ok) {
+                    throw data
+                }
+                return data;
             })
         } catch (error: any) {
             const errors = error.payload.errors as {
@@ -73,10 +91,9 @@ export default function LoginForm() {
             }
         }
     }
-
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
                 <FormField
                     control={form.control}
                     name="email"
