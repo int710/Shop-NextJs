@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useToast } from "@/components/ui/use-toast"
+import { NextResponse } from 'next/server'
+
 
 import { Button } from "@/components/ui/button"
 import {
@@ -18,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { LoginBody, LoginBodyType } from "@/schemaValidations/auth.schema"
 import envConfig from "../../../../config"
+import { request } from "http"
 
 export default function LoginForm() {
     const { toast } = useToast();
@@ -70,6 +73,12 @@ export default function LoginForm() {
                 }
                 return data;
             })
+
+            if (result.status === 200) {
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 2000)
+            }
         } catch (error: any) {
             const errors = error.payload.errors as {
                 field: string
