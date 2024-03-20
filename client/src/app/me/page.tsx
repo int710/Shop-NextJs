@@ -21,7 +21,7 @@ async function MeProfile() {
         }
         return data
     })
-    console.log(result)
+
     return (<div>
         Xin chào {result.payload?.data.name}
     </div>);
